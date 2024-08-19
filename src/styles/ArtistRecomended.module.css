@@ -1,0 +1,9 @@
+.container img {
+    border-radius: 1000px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

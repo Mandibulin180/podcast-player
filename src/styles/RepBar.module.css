@@ -1,0 +1,55 @@
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #222;
+    position: fixed;
+    bottom: 0;
+    color: #fff;
+    width: 100%;
+}
+
+.buttons button {
+    background-color: #222;
+}
+
+.title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.title span:first-child {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.title span:last-child {
+    font-size: 14px;
+    color: #aaa;
+}
+
+.icons {
+    display: flex;
+    align-items: center;
+}
+
+.iconButton {
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+}
+
+.iconButton:hover {
+    color: #ddd;
+}
+
+.iconButton i {
+    font-size: 20px;
+}
+
+.current_song img {
+    width: 50px;
+    height: 50px;
+}
