@@ -1,0 +1,31 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.contenedor {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 3rem;
+}
+
+.contenedor h3 {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0;
+    text-align: left;
+}
+
+.contenedor p {
+    float: right;
+    margin-right: 1rem;
+    padding-right: 20px;
+}
+
+.contenedor section {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
