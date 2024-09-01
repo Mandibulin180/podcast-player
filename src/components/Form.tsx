@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, useEffect, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import formStyle from "../styles/Form.module.css";
 import Card from "./Card";
 
@@ -94,7 +94,7 @@ export default function Form({ setCreatePlaylist, createdPlaylist }: Props) {
                                 className={formStyle.label}
                                 htmlFor="img-input"
                             >
-                                Imagene (URL)
+                                Imagen (URL)
                             </label>
                             <input
                                 className={formStyle.input}
