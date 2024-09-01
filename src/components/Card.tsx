@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "../styles/Card.css";
 import SecondCardStyle from "../styles/CardTwo.module.css";
 type Props = {
