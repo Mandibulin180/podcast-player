@@ -1,0 +1,6 @@
+.content_container {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    margin: 10rem 17rem;
+}

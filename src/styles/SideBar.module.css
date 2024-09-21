@@ -1,0 +1,97 @@
+/* Sidebar.module.css */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100%;
+    color: white;
+    border-right: solid gray;
+    padding: 15px;
+    padding-left: 5px;
+    transition: transform 0.3s ease-in-out;
+    transform: translateX(-100%);
+    overflow-y: auto;
+}
+
+.sidebar::-webkit-scrollbar {
+    width: 5px;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 10px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+}
+
+.sidebarVisible {
+    transform: translateX(0);
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    padding-top: 4rem;
+}
+
+.sidebar ul li {
+    padding: 10px 0;
+    cursor: pointer;
+}
+
+.buttons button {
+    background-color: black;
+}
+
+.playlist {
+    display: flex;
+    align-items: center;
+    background-color: #181818;
+    border-radius: 10px;
+    padding: 10px;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    max-width: 300px;
+}
+
+.image {
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    margin-right: 10px;
+    object-fit: cover;
+}
+
+.title {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+}
+
+.description {
+    font-size: 14px;
+    color: #b3b3b3;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+}
+
+.bubble {
+    position: absolute;
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    left: 80%;
+    bottom: unset;
+    transform: translateX(-50%);
+    white-space: normal;
+    z-index: 10;
+    max-width: 250px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
