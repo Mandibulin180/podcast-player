@@ -1,6 +1,7 @@
 import Container from "./Container";
 import Card from "./Card";
 import RecommendedAlbumStyle from "../styles/RecommendedAlbumStyle.module.css";
+import useFetchData from "../customhooks/useFetchData";
 
 const ALBUMS = [
     {
@@ -38,22 +39,35 @@ const ALBUMS = [
 type Props = {
     classname?: string;
 };
+
+const PODCAST_API = "https://api.audioboom.com/audio_clips";
+
 function RecommendedAlbum(props: Props) {
+    const data = useFetchData(PODCAST_API)
+        .sort(() => 0.5 - Math.random())
+        .slice(0, 5);
     return (
         <div className={props.classname}>
             <Container
-                text1="Recommended Albums"
+                text1="Recommended Podcasts"
                 profileImg="../src/assets//img/userIcon.jpg"
             >
                 <div className={RecommendedAlbumStyle.contenedor}>
-                    {ALBUMS.map((album) => {
+                    {data.map((podcast) => {
+                        let podcastInfo: string = "";
+                        if (podcast.description) {
+                            podcastInfo =
+                                podcast.description.slice(0, 60) + "... ";
+                        } else {
+                            podcastInfo = "No description yet";
+                        }
                         return (
                             <Card
-                                title={album.title}
-                                info={album.info}
-                                img={album.img}
-                                key={album.id}
-                                className={album.id}
+                                title={podcast.title}
+                                info={podcastInfo}
+                                img={podcast.channel.urls.logo_image.original}
+                                key={podcast.id}
+                                audioUrl={podcast.urls.high_mp3}
                             />
                         );
                     })}

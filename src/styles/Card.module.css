@@ -1,0 +1,59 @@
+/* Estilos base */
+.playlist_container {
+    display: flex;
+    gap: 200px;
+    padding: 1rem;
+    scroll-behavior: smooth;
+}
+
+.playlist {
+    flex: 0 0 auto;
+    width: 200px;
+    height: 350px;
+    border-radius: 10px;
+    overflow: hidden;
+    text-align: center;
+    color: white;
+    cursor: pointer;
+}
+
+.playlist img {
+    width: 100%;
+    height: auto;
+}
+.playlist h3 {
+    font-size: 16px;
+}
+
+.playlist p {
+    font-size: 14px;
+    color: #888;
+}
+
+.image_container {
+    position: relative;
+    display: inline-block;
+}
+
+.img_button {
+    position: absolute;
+    top: 5rem;
+    right: 4.5rem;
+    padding: 10px 20px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.img_button2 {
+    height: 2rem;
+    width: 3rem;
+    position: absolute;
+    top: 0.6rem;
+    right: 1.3rem;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    border: none;
+    cursor: pointer;
+}
