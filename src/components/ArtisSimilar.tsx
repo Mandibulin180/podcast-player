@@ -7,6 +7,24 @@ type Props = {
     className?: string;
 };
 
+type PropsPodcast = {
+    channel: {
+        urls: {
+            detail: string;
+            logo_image: { original: string };
+        };
+        title: string;
+    };
+    urls: { high_mp3: string };
+    id: string;
+};
+
+type PropsChannel = {
+    channel: {
+        title: string;
+    };
+};
+
 const PODCAST_API = "https://api.audioboom.com/audio_clips";
 
 function ArtistSimilar(props: Props) {
@@ -14,17 +32,25 @@ function ArtistSimilar(props: Props) {
         .sort(() => 0.5 - Math.random())
         .slice(0, 6);
 
-    const c = data.pop();
+    const channel = data.pop();
+
+    let channelTitle: string = "";
+
+    if (channel === undefined) {
+    } else {
+        const channelExist: PropsChannel = channel;
+        channelTitle = channelExist.channel.title;
+    }
 
     return (
         <div className={props.className}>
             <Container
                 text2="SIMILAR TO"
-                text1={c === undefined ? "" : c.channel.title}
+                text1={channel === undefined ? "" : channelTitle}
                 profileImg="../src/assets//img/userIcon.jpg"
             >
                 <div className={ArtisClass.container}>
-                    {data.map((podcast) => {
+                    {data.map((podcast: PropsPodcast) => {
                         return (
                             <Card
                                 isNotReproducible={true}

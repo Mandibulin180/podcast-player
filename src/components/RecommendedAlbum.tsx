@@ -40,6 +40,14 @@ type Props = {
     classname?: string;
 };
 
+type PropsPodcast = {
+    title: string;
+    description: string;
+    channel: { urls: { logo_image: { original: string } } };
+    urls: { high_mp3: string };
+    id: string;
+};
+
 const PODCAST_API = "https://api.audioboom.com/audio_clips";
 
 function RecommendedAlbum(props: Props) {
@@ -53,7 +61,7 @@ function RecommendedAlbum(props: Props) {
                 profileImg="../src/assets//img/userIcon.jpg"
             >
                 <div className={RecommendedAlbumStyle.contenedor}>
-                    {data.map((podcast) => {
+                    {data.map((podcast: PropsPodcast) => {
                         let podcastInfo: string = "";
                         if (podcast.description) {
                             podcastInfo =

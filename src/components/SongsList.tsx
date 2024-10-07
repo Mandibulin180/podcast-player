@@ -4,6 +4,13 @@ import SongsListStyle from "../styles/SongsList.module.css";
 import useFetchData from "../customhooks/useFetchData";
 
 const PODCAST_API = "https://api.audioboom.com/audio_clips";
+type PropsPodcast = {
+    title: string;
+    description: string;
+    channel: { title: string; urls: { logo_image: { original: string } } };
+    urls: { high_mp3: string };
+    id: string;
+};
 function SongsList() {
     const data = useFetchData(PODCAST_API)
         .sort(() => 0.5 - Math.random())
@@ -15,7 +22,7 @@ function SongsList() {
             profileImg="../src/assets//img/userIcon.jpg"
         >
             <div className={SongsListStyle.container}>
-                {data.map((podcast) => {
+                {data.map((podcast: PropsPodcast) => {
                     return (
                         <SecondCard
                             key={podcast.id}

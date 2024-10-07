@@ -15,7 +15,7 @@ interface TypeList {
     key?: number;
 }
 
-export const audioContext = createContext();
+export const audioContext = createContext("");
 
 export default function Home() {
     const [playlist, setPlaylist] = useState(true);
