@@ -1,6 +1,7 @@
 import { FormEvent, useEffect, useState } from "react";
 import formStyle from "../styles/Form.module.css";
 import Card from "./Card";
+import { TypeList } from "./Home";
 
 type Props = {
     setCreatePlaylist: React.Dispatch<
@@ -13,9 +14,7 @@ type Props = {
             }[]
         >
     >;
-    createdPlaylist: [
-        { img: string; title: string; description: string; key?: number }
-    ];
+    createdPlaylist: TypeList[];
 };
 
 export default function Form({ setCreatePlaylist, createdPlaylist }: Props) {

@@ -1,13 +1,12 @@
 import header from "../styles/Header.module.css";
+import { TypeList } from "./Home";
 import Sidebar from "./SideBar";
 import React, { useState } from "react";
 
 type Props = {
     userimg: string;
     setPlaylist: React.Dispatch<React.SetStateAction<boolean>>;
-    createdPlaylist: [
-        { img: string; title: string; description: string; key?: number }
-    ];
+    createdPlaylist: TypeList[];
 };
 
 const Navbar: React.FC<Props> = (props) => {
