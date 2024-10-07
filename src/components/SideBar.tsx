@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import sideBarStyles from "../styles/SideBar.module.css";
+import { TypeList } from "./Home";
 
 type SidebarProps = {
     isVisible: boolean;
     setPlaylist: React.Dispatch<React.SetStateAction<boolean>>;
-    createdPlaylist: [
-        { img: string; title: string; description: string; key?: number }
-    ];
+    createdPlaylist: TypeList[];
 };
 
 function Sidebar({ isVisible, setPlaylist, createdPlaylist }: SidebarProps) {
