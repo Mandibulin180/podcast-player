@@ -115,12 +115,7 @@ export default function Form({ setCreatePlaylist, createdPlaylist }: Props) {
                     </form>
                 </div>
                 <div className={formStyle.cardCont}>
-                    <Card
-                        className={formStyle.card}
-                        img={img}
-                        title={title}
-                        info={description}
-                    />
+                    <Card img={img} title={title} info={description} />
                 </div>
             </div>
         </div>
