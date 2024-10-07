@@ -20,7 +20,6 @@ export const audioContext = createContext("");
 export default function Home() {
     const [playlist, setPlaylist] = useState(true);
     const [createdPlaylist, setCreatePlaylist] = useState<TypeList[]>([]);
-    const audioRef = useRef<HTMLAudioElement | null>(null);
     const [reproduciendo, setReproduciendo] = useState(false);
     return (
         <div>
