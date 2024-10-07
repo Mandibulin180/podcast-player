@@ -1,45 +1,27 @@
 import Container from "./Container";
 import Card from "./Card";
 import ListenAgainStyle from "../styles/ListenAgain.module.css";
-
-const LISTENAGAIN = [
-    {
-        title: "Rap Argentino",
-        info: "Duki, YSY A • 20 Songs",
-        img: "../src/assets/img/duki.jfif",
-        id: "Earthquak",
-    },
-    {
-        title: "Cerati",
-        info: "Gustavo Cerati • 30 Songs",
-        img: "../src/assets/img/cerati.jfif",
-        id: "Earthquake2",
-    },
-    {
-        title: "Mix diario 1",
-        info: " Tyler, Frank • 40 Songs",
-        img: "../src/assets/img/tyler.jfif",
-        id: "Earthquake3",
-    },
-    {
-        title: "Mix diario 2",
-        info: "Invisible, Almendra • 20 Songs",
-        img: "../src/assets/img/luis.jfif",
-        id: "Earthquake4",
-    },
-    {
-        title: "Mix diario 3",
-        info: "Neo ,Ysy A • 30 Songs",
-        img: "../src/assets/img/YSY.jfif",
-        id: "Earthquake5",
-    },
-];
+import useFetchData from "../customhooks/useFetchData";
 
 type Props = {
     classname?: string;
 };
 
+type PropsPodcast = {
+    title: string;
+    description: string;
+    channel: { urls: { logo_image: { original: string } } };
+    urls: { high_mp3: string };
+    id: string;
+};
+
+const PODCAST_API = "https://api.audioboom.com/audio_clips";
+
 function ListenAgain(props: Props) {
+    const data = useFetchData(PODCAST_API)
+        .sort(() => 0.5 - Math.random())
+        .slice(0, 5);
+
     return (
         <div className={props.classname}>
             <Container
@@ -48,14 +30,19 @@ function ListenAgain(props: Props) {
                 profileImg="../src/assets//img/userIcon.jpg"
             >
                 <div className={ListenAgainStyle.contenedor}>
-                    {LISTENAGAIN.map((song) => {
+                    {data.map((podcast: PropsPodcast) => {
+                        let podcastInfo: string = "";
+                        if (podcast.description) {
+                            podcastInfo =
+                                podcast.description.slice(0, 100) + "... ";
+                        }
                         return (
                             <Card
-                                title={song.title}
-                                info={song.info}
-                                img={song.img}
-                                key={song.id}
-                                className={song.id}
+                                title={podcast.title}
+                                img={podcast.channel.urls.logo_image.original}
+                                info={podcastInfo}
+                                audioUrl={podcast.urls.high_mp3}
+                                key={podcast.id}
                             />
                         );
                     })}

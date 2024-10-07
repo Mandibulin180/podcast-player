@@ -6,7 +6,7 @@ import RecommendedAlbum from "./RecommendedAlbum";
 import RepBar from "./RepBar";
 import homeCss from "../styles/Home.module.css";
 import Form from "./Form";
-import { useState } from "react";
+import { createContext, useRef, useState } from "react";
 
 interface TypeList {
     img: string;
@@ -15,9 +15,13 @@ interface TypeList {
     key?: number;
 }
 
+export const audioContext = createContext();
+
 export default function Home() {
     const [playlist, setPlaylist] = useState(true);
     const [createdPlaylist, setCreatePlaylist] = useState<TypeList[]>([]);
+    const audioRef = useRef<HTMLAudioElement | null>(null);
+    const [reproduciendo, setReproduciendo] = useState(false);
     return (
         <div>
             <Navbar
@@ -27,12 +31,14 @@ export default function Home() {
             />
             <div className={homeCss.content_container}>
                 {playlist ? (
-                    <>
-                        <ListenAgain classname="list_again" />
-                        <ArtistSimilar className="art_sim" />
+                    <audioContext.Provider
+                        value={{ reproduciendo, setReproduciendo }}
+                    >
+                        <ListenAgain />
+                        <ArtistSimilar />
                         <SongsList />
-                        <RecommendedAlbum classname="rec_album" />
-                    </>
+                        <RecommendedAlbum />
+                    </audioContext.Provider>
                 ) : (
                     <Form
                         createdPlaylist={createdPlaylist}

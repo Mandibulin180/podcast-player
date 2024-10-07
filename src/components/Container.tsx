@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 import CardIcon from "../styles/CardIcon.module.css";
 
 type Props = {
-    text1: string;
+    text1?: string;
     text2?: string;
     profileImg: string;
     children: ReactNode;
