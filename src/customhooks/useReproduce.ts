@@ -7,6 +7,7 @@ export default function useReproduce() {
 
     function handleClick() {
         setIsPlaying(!isPlaying);
+
         if (isPlaying) {
             audioRef.current?.pause();
         } else {
@@ -24,5 +25,6 @@ export default function useReproduce() {
         audioRef,
         handleClick,
         handleVisibility,
+        setIsPlaying,
     };
 }
