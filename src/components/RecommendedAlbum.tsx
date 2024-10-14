@@ -1,26 +1,24 @@
 import Container from "./Container";
 import Card from "./Card";
 import RecommendedAlbumStyle from "../styles/RecommendedAlbumStyle.module.css";
-import useFetchData from "../customhooks/useFetchData";
+import { useContext } from "react";
+import { dataContext, TypeDataPodcast, useAudioContext } from "./Home";
 
 type Props = {
     classname?: string;
 };
 
-type PropsPodcast = {
-    title: string;
-    description: string;
-    channel: { urls: { logo_image: { original: string } } };
-    urls: { high_mp3: string };
-    id: string;
-};
-
-const PODCAST_API = "https://api.audioboom.com/audio_clips";
-
 function RecommendedAlbum(props: Props) {
-    const data = useFetchData(PODCAST_API)
-        .sort(() => 0.5 - Math.random())
-        .slice(0, 5);
+    const data = useContext(dataContext).slice(11, 16);
+    const {
+        actualPodcastRef,
+        setActualPodcastRef,
+        setActualPodcast,
+        isPlayingPodcast,
+        setIsPlayingPodcast,
+        setProgress,
+        setDuration,
+    } = useAudioContext();
     return (
         <div className={props.classname}>
             <Container
@@ -28,7 +26,7 @@ function RecommendedAlbum(props: Props) {
                 profileImg="../src/assets//img/userIcon.jpg"
             >
                 <div className={RecommendedAlbumStyle.contenedor}>
-                    {data.map((podcast: PropsPodcast) => {
+                    {data.map((podcast: TypeDataPodcast) => {
                         let podcastInfo: string = "";
                         if (podcast.description) {
                             podcastInfo =
@@ -36,15 +34,32 @@ function RecommendedAlbum(props: Props) {
                         } else {
                             podcastInfo = "No description yet";
                         }
-                        return (
-                            <Card
-                                title={podcast.title}
-                                info={podcastInfo}
-                                img={podcast.channel.urls.logo_image.original}
-                                key={podcast.id}
-                                audioUrl={podcast.urls.high_mp3}
-                            />
-                        );
+
+                        if (
+                            podcast.title &&
+                            podcast.channel?.title &&
+                            podcast.channel.urls?.logo_image?.original &&
+                            podcast.urls?.high_mp3
+                        ) {
+                            return (
+                                <Card
+                                    title={podcast.title}
+                                    info={podcastInfo}
+                                    img={
+                                        podcast.channel.urls.logo_image.original
+                                    }
+                                    key={podcast.id}
+                                    audioUrl={podcast.urls.high_mp3}
+                                    setActualPodcast={setActualPodcast}
+                                    setActualPodcastRef={setActualPodcastRef}
+                                    setIsPlayingPodcast={setIsPlayingPodcast}
+                                    isPlayingPodcast={isPlayingPodcast}
+                                    actualPodcastRef={actualPodcastRef}
+                                    setProgress={setProgress}
+                                    setDuration={setDuration}
+                                />
+                            );
+                        }
                     })}
                 </div>
             </Container>

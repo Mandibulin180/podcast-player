@@ -1,45 +1,22 @@
 import Container from "./Container";
 import Card from "./Card";
 import ArtisClass from "../styles/ArtistRecomended.module.css";
-import useFetchData from "../customhooks/useFetchData";
+import { dataContext, TypeDataPodcast } from "./Home";
+import { useContext } from "react";
 
 type Props = {
     className?: string;
 };
 
-type PropsPodcast = {
-    channel: {
-        urls: {
-            detail: string;
-            logo_image: { original: string };
-        };
-        title: string;
-    };
-    urls: { high_mp3: string };
-    id: string;
-};
-
-type PropsChannel = {
-    channel: {
-        title: string;
-    };
-};
-
-const PODCAST_API = "https://api.audioboom.com/audio_clips";
-
 function ArtistSimilar(props: Props) {
-    const data = useFetchData(PODCAST_API)
-        .sort(() => 0.5 - Math.random())
-        .slice(0, 6);
+    const data = useContext(dataContext).slice(5, 10);
+    const channel = data[7];
 
-    const channel = data.pop();
-
-    let channelTitle: string = "";
+    let channelTitle: string | undefined = "";
 
     if (channel === undefined) {
     } else {
-        const channelExist: PropsChannel = channel;
-        channelTitle = channelExist.channel.title;
+        channelTitle = channel.channel?.title;
     }
 
     return (
@@ -50,16 +27,24 @@ function ArtistSimilar(props: Props) {
                 profileImg="../src/assets//img/userIcon.jpg"
             >
                 <div className={ArtisClass.container}>
-                    {data.map((podcast: PropsPodcast) => {
-                        return (
-                            <Card
-                                isNotReproducible={true}
-                                title={podcast.channel.title}
-                                info={podcast.channel.urls.detail}
-                                img={podcast.channel.urls.logo_image.original}
-                                key={podcast.id}
-                            />
-                        );
+                    {data.map((podcast: TypeDataPodcast) => {
+                        if (
+                            podcast.title &&
+                            podcast.channel?.title &&
+                            podcast.channel.urls?.logo_image?.original
+                        ) {
+                            return (
+                                <Card
+                                    isNotReproducible={true}
+                                    title={podcast.channel.title}
+                                    info={podcast.channel.urls.detail}
+                                    img={
+                                        podcast.channel.urls.logo_image.original
+                                    }
+                                    key={podcast.id}
+                                />
+                            );
+                        }
                     })}
                 </div>
             </Container>
