@@ -44,14 +44,17 @@ function Card(props: Props) {
 
     useEffect(() => {
         if (audioRef?.current) {
-            const audio = audioRef?.current;
+            const audio = audioRef.current;
             if (!audio) {
                 return;
             }
+
             function updateProgress() {
                 if (props.setProgress) {
                     if (audio.currentTime && audio.duration) {
-                        props.setProgress(audio.currentTime);
+                        props.setProgress(
+                            (audio.currentTime / audio.duration) * 100
+                        );
                     }
                 }
             }
@@ -63,6 +66,14 @@ function Card(props: Props) {
             };
         }
     }, []);
+
+    function handleLoadedMetaData() {
+        if (audioRef.current) {
+            if (props.setDuration) {
+                props.setDuration(audioRef.current.duration);
+            }
+        }
+    }
 
     return (
         <div className={CardStyle.playlist_container}>
@@ -107,7 +118,11 @@ function Card(props: Props) {
                 ) : (
                     <img src={props.img} alt="Playlist Image" />
                 )}
-                <audio ref={audioRef} src={props.audioUrl} />
+                <audio
+                    ref={audioRef}
+                    src={props.audioUrl}
+                    onLoadedMetadata={handleLoadedMetaData}
+                />
                 <section>
                     <h3>{props.title}</h3>
                     <p>{props.info}</p>

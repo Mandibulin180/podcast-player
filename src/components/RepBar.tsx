@@ -48,7 +48,6 @@ function RepBar() {
             actualPodcastRef.current.currentTime = 0;
         }
     }
-
     return (
         <>
             {isPlayingPodcast ? (
@@ -59,18 +58,15 @@ function RepBar() {
                                 className={RepBarStyle.durationBar}
                                 type="range"
                                 min="0"
-                                max={duration}
+                                max={100}
                                 value={progress}
                                 onChange={handleProgressChange}
                             />
                             <p>
-                                {(progress / 60).toFixed(2)} :
-                                {actualPodcastRef?.current
-                                    ? (
-                                          actualPodcastRef.current?.duration /
-                                          60
-                                      ).toFixed(2)
-                                    : ""}
+                                {actualPodcastRef?.current?.currentTime?.toFixed(
+                                    2
+                                )}{" "}
+                                :{duration.toFixed(2)}
                             </p>
                         </div>
                         <div className={RepBarStyle.current_song}>
