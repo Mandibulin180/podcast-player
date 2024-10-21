@@ -11,7 +11,6 @@ function RepBar() {
         setIsPlayingPodcast,
         setProgress,
         progress,
-        duration,
     } = useAudioContext();
 
     const [isplaying, setIsPLaying] = useState(isPlayingPodcast);
