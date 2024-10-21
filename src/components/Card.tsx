@@ -64,14 +64,6 @@ function Card(props: Props) {
         }
     }, []);
 
-    function handleLoadedMetaData() {
-        if (audioRef.current) {
-            if (props.setDuration) {
-                props.setDuration(audioRef.current.duration);
-            }
-        }
-    }
-
     return (
         <div className={CardStyle.playlist_container}>
             <div className={CardStyle.playlist}>
@@ -115,11 +107,7 @@ function Card(props: Props) {
                 ) : (
                     <img src={props.img} alt="Playlist Image" />
                 )}
-                <audio
-                    ref={audioRef}
-                    src={props.audioUrl}
-                    onLoadedMetadata={handleLoadedMetaData}
-                />
+                <audio ref={audioRef} src={props.audioUrl} />
                 <section>
                     <h3>{props.title}</h3>
                     <p>{props.info}</p>
