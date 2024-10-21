@@ -11,7 +11,6 @@ function RepBar() {
         setIsPlayingPodcast,
         setProgress,
         progress,
-        duration,
     } = useAudioContext();
 
     const [isplaying, setIsPLaying] = useState(isPlayingPodcast);
@@ -66,7 +65,8 @@ function RepBar() {
                                 {actualPodcastRef?.current?.currentTime?.toFixed(
                                     2
                                 )}{" "}
-                                :{duration.toFixed(2)}
+                                :
+                                {actualPodcastRef?.current?.duration.toFixed(2)}
                             </p>
                         </div>
                         <div className={RepBarStyle.current_song}>
