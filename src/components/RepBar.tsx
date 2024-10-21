@@ -66,7 +66,8 @@ function RepBar() {
                                 {actualPodcastRef?.current?.currentTime?.toFixed(
                                     2
                                 )}{" "}
-                                :{duration.toFixed(2)}
+                                :
+                                {actualPodcastRef?.current?.duration.toFixed(2)}
                             </p>
                         </div>
                         <div className={RepBarStyle.current_song}>
